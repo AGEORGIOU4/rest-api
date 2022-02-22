@@ -1,9 +1,9 @@
 const express = require('express')
 
-const books = require('./entities/books.js');
-const students = require('./entities/students.js');
-const modules = require('./entities/modules.js');
-const loans = require('./entities/loans.js');
+const books = require('./calls/books.js');
+const students = require('./calls/students.js');
+const modules = require('./calls/modules.js');
+const loans = require('./calls/loans.js');
 
 const app = express();
 const port = 3000;

@@ -1,31 +1,8 @@
 const express = require('express')
 const router = express.Router();
 
-// Sequelize Model
-const {Sequelize, DataTypes, Op} = require('sequelize');
-const error = require("express");
-const sequelize = new Sequelize({
-    dialect: 'sqlite',
-    storage: 'db/library.db'
-})
-
-const Module = sequelize.define('Module', {
-    code: {
-        type: DataTypes.STRING,
-        require: true,
-        primaryKey: true,
-        unique: true
-    },
-    name: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-}, {
-    tableName: 'modules', // table name
-    timestamps: false // skip custom timestamp columns
-});
-
-sequelize.sync();
+const {Op} = require('sequelize');
+const {Module} = require("../concepts/module.js")
 
 // ======== Modules API Calls ======== //
 

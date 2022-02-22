@@ -1,46 +1,11 @@
 const express = require('express')
 const router = express.Router();
 
-// Sequelize Model
-const {Sequelize, DataTypes, Op} = require('sequelize');
-const error = require("express");
-const sequelize = new Sequelize({
-    dialect: 'sqlite',
-    storage: 'db/library.db'
-})
-
-const Loan = sequelize.define('Loan', {
-    bookID: {
-        type: DataTypes.INTEGER,
-        require: true,
-        primaryKey: true,
-    },
-    studentID: {
-        type: DataTypes.INTEGER,
-        require: true,
-        primaryKey: true,
-    },
-    checkout: {
-        type: DataTypes.DATE,
-        allowNull: false
-    },
-    due: {
-        type: DataTypes.DATE,
-        allowNull: false
-    },
-    returned: {
-        type: DataTypes.BOOLEAN,
-        allowNull: false,
-        defaultValue: false
-    },
-}, {
-    tableName: 'loans', // table name
-    timestamps: false // skip custom timestamp columns
-});
-
-sequelize.sync();
+const {Op} = require('sequelize');
+const {Loan} = require("../concepts/loan.js")
 
 // ======== Loans API Calls ======== //
+
 router.get('/library/loans', (req, res) => {
     Loan.findAll()
         .then(loans => {
