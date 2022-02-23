@@ -5,16 +5,27 @@ const sequelize = new Sequelize({
     storage: 'db/library.db'
 })
 
+const {Book} = require("../concepts/book.js")
+const {Student} = require("../concepts/student.js")
+
 const Loan = sequelize.define('Loan', {
     bookID: {
         type: DataTypes.INTEGER,
         require: true,
         primaryKey: true,
+        references: {
+            model: Book,
+            key: 'id'
+        }
     },
     studentID: {
         type: DataTypes.INTEGER,
         require: true,
         primaryKey: true,
+        references: {
+            model: Student,
+            key: 'id'
+        }
     },
     checkout: {
         type: DataTypes.DATE,
@@ -27,7 +38,8 @@ const Loan = sequelize.define('Loan', {
     returned: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
-        defaultValue: false
+        defaultValue: false,
+        primaryKey: true,
     },
 }, {
     tableName: 'loans', // table name

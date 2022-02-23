@@ -31,8 +31,7 @@ const Book = sequelize.define('Book', {
     },
     loanable: {
         type: DataTypes.BOOLEAN,
-        allowNull: false,
-        defaultValue: true
+        allowNull: false
     },
     quantity: {
         type: DataTypes.INTEGER,

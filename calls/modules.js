@@ -40,7 +40,7 @@ router.get('/library/module/:code', (req, res) => {
                     res.status(404)
                         .setHeader('content-type', 'application/json')
                         .send({message: `Module not found for code: ${code}`});
-                } else { // student found
+                } else { // loan found
                     res.status(200)
                         .setHeader('content-type', 'application/json')
                         .send(module); // body is JSON
