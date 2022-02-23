@@ -113,8 +113,6 @@ router.put('/library/module/:code&:name', (req, res) => {
     const {name} = req.params; // get name from URI
     const posted_module = req.body; // submitted module
 
-    console.log(name);
-
     if (!code || !name) {
         res.status(422)
             .setHeader('content-type', 'application/json')
