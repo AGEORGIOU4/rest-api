@@ -12,7 +12,6 @@ const Loan = sequelize.define('Loan', {
     bookID: {
         type: DataTypes.INTEGER,
         require: true,
-        primaryKey: true,
         references: {
             model: Book,
             key: 'id'
@@ -21,7 +20,6 @@ const Loan = sequelize.define('Loan', {
     studentID: {
         type: DataTypes.INTEGER,
         require: true,
-        primaryKey: true,
         references: {
             model: Student,
             key: 'id'
@@ -39,13 +37,16 @@ const Loan = sequelize.define('Loan', {
         type: DataTypes.BOOLEAN,
         allowNull: false,
         defaultValue: false,
-        primaryKey: true,
     },
 }, {
     tableName: 'loans', // table name
     timestamps: false // skip custom timestamp columns
 });
 
-sequelize.sync();
+async function init() {
+    await sequelize.sync();
+}
+
+init();
 
 exports.Loan = Loan

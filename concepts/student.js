@@ -18,13 +18,21 @@ const Student = sequelize.define('Student', {
     },
     yob: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            min: 1900,
+            max: 2022
+        }
     },
 }, {
     tableName: 'students', // table name
     timestamps: false // skip custom timestamp columns
 });
 
-sequelize.sync();
+async function init() {
+    await sequelize.sync();
+}
+
+init();
 
 exports.Student = Student;

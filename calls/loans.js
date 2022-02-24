@@ -2,7 +2,6 @@ const express = require('express')
 const router = express.Router();
 
 const {Loan} = require("../concepts/loan.js")
-
 const {Book} = require("../concepts/book.js")
 
 const date = new Date();
@@ -10,7 +9,9 @@ const ninetyDaysFromToday = date.getTime() + 7776000000; // today + 90 days in m
 
 let bookIsLoanable = 0;
 let bookQuantity = 0;
+
 let pendingLoans = 0;
+let isLoanedBySameStudent = false;
 
 async function getBookAttributes(id) {
     await Book.findOne({where: {id: id}})
@@ -23,10 +24,20 @@ async function getBookAttributes(id) {
         });
 }
 
-async function getPendingLoans(bookID) {
+async function getPendingLoans(bookID, studentID) {
     await Loan.count({where: {bookID: bookID}})
         .then(loans => {
             pendingLoans = loans;
+        })
+        .catch(error => {
+            console.log({error: `Server error: ${error.name}`});
+        });
+
+    await Loan.count({where: {bookID: bookID, studentID: studentID, returned: false}})
+        .then(loaned => {
+            if (loaned > 0) {
+                isLoanedBySameStudent = true;
+            }
         })
         .catch(error => {
             console.log({error: `Server error: ${error.name}`});
@@ -35,33 +46,82 @@ async function getPendingLoans(bookID) {
 
 // ======== Loans API Calls ======== //
 
-router.get('/library/loans', (req, res) => {
-    Loan.findAll()
-        .then(loans => {
-            res.status(200)
-                .setHeader('content-type', 'application/json')
-                .send(loans); // body is JSON
-        })
-        .catch(error => {
-            res.status(500)
-                .setHeader('content-type', 'application/json')
-                .send({error: `Server error: ${error.name}`});
-        });
+router.post('/library/loan', (req, res) => {
+    const posted_loan = req.body; // submitted loan
+
+    getBookAttributes(posted_loan.bookID).then(() => {
+            if (!posted_loan.bookID || !posted_loan.studentID || !posted_loan.checkout || !posted_loan.due || !posted_loan.returned) { // check if all fields are completed
+                res.status(422)
+                    .setHeader('content-type', 'application/json')
+                    .send({error: `Bad request - All fields must be completed`}); // bad request
+            } else if (bookIsLoanable === 0) { // check if book exists
+                res.status(422)
+                    .setHeader('content-type', 'application/json')
+                    .send({error: `Bad request - Book does not exist`}); // bad request
+            } else if (!bookIsLoanable) { // check if book is loanable
+                res.status(422)
+                    .setHeader('content-type', 'application/json')
+                    .send({error: `Bad request - Book must be loanable`}); // bad request
+                bookIsLoanable = 0;
+            } else if ((Date.parse(posted_loan.due) > ninetyDaysFromToday) || (Date.parse(posted_loan.due) < date.getTime()) || !posted_loan.due
+                || !Date.parse(posted_loan.due) > 0) { // check if due date is valid
+                res.status(422)
+                    .setHeader('content-type', 'application/json')
+                    .send({error: `Bad request - Due date must valid (01/30/2022 23:30:30) and no more than 90 days in the future`}); // bad request
+            } else if (!Date.parse(posted_loan.checkout) > 0) { // check if checkout date is valid
+                res.status(422)
+                    .setHeader('content-type', 'application/json')
+                    .send({error: `Bad request - Checkout date must valid (01/30/2022 23:30:30)`}); // bad request
+            } else {
+                getPendingLoans(posted_loan.bookID, posted_loan.studentID).then(() => {
+                    if (isLoanedBySameStudent) {
+                        res.status(422)
+                            .setHeader('content-type', 'application/json')
+                            .send({error: `Bad request - The student has already loaned this book`}); // bad request
+                        isLoanedBySameStudent = false;
+                    } else if (pendingLoans >= bookQuantity) {
+                        res.status(422)
+                            .setHeader('content-type', 'application/json')
+                            .send({error: `Bad request - No available books for loan at the moment`}); // bad request
+                    } else {
+                        Loan.create({
+                            bookID: posted_loan.bookID,
+                            studentID: posted_loan.studentID,
+                            checkout: posted_loan.checkout,
+                            due: posted_loan.due,
+                            returned: posted_loan.returned,
+                        })
+                            .then(loan => {
+                                res.status(200)
+                                    .setHeader('content-type', 'application/json')
+                                    .send({message: `Loan added`, loan: loan}); // body is JSON
+
+                                bookIsLoanable = 0;
+                            })
+                            .catch(error => {
+                                res.status(500)
+                                    .setHeader('content-type', 'application/json')
+                                    .send({error: `Server error: ${error.name}`});
+                            });
+                    }
+                })
+
+            }
+        }
+    );
 });
 
 router.get('/library/loans/bookID:id/:pending?', (req, res) => {
     const {id} = req.params; // extract 'id' from request
     const {pending} = req.params; // extract 'id' from request
 
-    if (!id || isNaN(id)) {
+    if (isNaN(id)) {
         res.status(422)
             .setHeader('content-type', 'application/json')
             .send({message: `ID is not valid`});
-    } else if (!pending) {
+    } else if (!pending) { // pending is optional
         Loan.findAll({
-            where: {
-                bookID: id,
-            }
+            where: {bookID: id}
         })
             .then(loans => {
                 res.status(200)
@@ -115,9 +175,7 @@ router.get('/library/loans/studentID:id/:pending?', (req, res) => {
             .send({message: `ID is not valid`});
     } else if (!pending) {
         Loan.findAll({
-            where: {
-                studentID: id,
-            }
+            where: {studentID: id}
         })
             .then(loans => {
                 res.status(200)
@@ -161,126 +219,10 @@ router.get('/library/loans/studentID:id/:pending?', (req, res) => {
     }
 });
 
-router.post('/library/loan', (req, res) => {
-    const posted_loan = req.body; // submitted loan
-
-    if (Object.keys(posted_loan).length === 0) { // check if all fields are completed
-        res.status(422)
-            .setHeader('content-type', 'application/json')
-            .send({error: `Bad request - All fields must be completed`}); // bad request
-    } else {
-        getBookAttributes(posted_loan.bookID).then(() => {
-                if (bookIsLoanable === 0) { // check if book exists
-                    res.status(422)
-                        .setHeader('content-type', 'application/json')
-                        .send({error: `Bad request - Book does not exist`}); // bad request
-                } else if (!bookIsLoanable) { // check if book is loanable
-                    res.status(422)
-                        .setHeader('content-type', 'application/json')
-                        .send({error: `Bad request - Book must be loanable`}); // bad request
-                    bookIsLoanable = 0;
-                } else if ((Date.parse(posted_loan.due) > ninetyDaysFromToday) || (Date.parse(posted_loan.due) < date.getTime()) || !posted_loan.due
-                    || !Date.parse(posted_loan.due) > 0) { // check if due date is valid
-                    res.status(422)
-                        .setHeader('content-type', 'application/json')
-                        .send({error: `Bad request - Due date must valid (01/30/2022 23:30:30) and no more than 90 days in the future`}); // bad request
-                } else if (!Date.parse(posted_loan.checkout) > 0) { // check if checkout date is valid
-                    res.status(422)
-                        .setHeader('content-type', 'application/json')
-                        .send({error: `Bad request - Checkout date must valid (01/30/2022 23:30:30)`}); // bad request
-                } else {
-                    getPendingLoans(posted_loan.bookID).then(() => {
-                        if (pendingLoans >= bookQuantity) {
-                            res.status(422)
-                                .setHeader('content-type', 'application/json')
-                                .send({error: `Bad request - No available books for loan at the moment`}); // bad request
-                        } else {
-                            Loan.create({
-                                bookID: posted_loan.bookID,
-                                studentID: posted_loan.studentID,
-                                checkout: posted_loan.checkout,
-                                due: posted_loan.due,
-                                returned: posted_loan.returned,
-                            })
-                                .then(loan => {
-                                    res.status(200)
-                                        .setHeader('content-type', 'application/json')
-                                        .send({message: `Loan added`, loan: loan}); // body is JSON
-
-                                    bookIsLoanable = 0;
-                                })
-                                .catch(error => {
-                                    res.status(500)
-                                        .setHeader('content-type', 'application/json')
-                                        .send({error: `Server error: ${error.name}`});
-                                });
-                        }
-                    })
-
-                }
-            }
-        );
-    }
-});
-
 router.put('/library/loan/:bookID&:studentID', (req, res) => {
     const {bookID} = req.params; // get code from URI
     const {studentID} = req.params; // get name from URI
     const posted_loan = req.body; // submitted loan
-
-    if (!bookID || !studentID) {
-        res.status(422)
-            .setHeader('content-type', 'application/json')
-            .send({message: `Book ID and Student ID are required as parameters`});
-    } else {
-        Loan.findOne({
-            where: {
-                bookID: bookID,
-                studentID: studentID
-            }
-        })
-            .then(loan => {
-                    if (!loan) {
-                        res.status(404)
-                            .setHeader('content-type', 'application/json')
-                            .send({message: `Loan not found for book ID ${bookID} and student ID ${studentID}`});
-                    } else if (!posted_loan.checkout && !posted_loan.due && !posted_loan.returned) {
-                        res.status(422)
-                            .setHeader('content-type', 'application/json')
-                            .send({error: `Bad request - Given book ID and student ID must be valid and at least some of the Checkout, Due and Returned fields are provided`}); // bad request
-                    } else { // loan found
-                        if (posted_loan.checkout)
-                            loan.checkout = posted_loan.checkout;
-                        if (posted_loan.due)
-                            loan.due = posted_loan.due;
-                        if (posted_loan.returned)
-                            loan.returned = posted_loan.returned;
-
-                        loan.save()
-                            .then(loan => {
-                                res.status(200)
-                                    .setHeader('content-type', 'application/json')
-                                    .send({message: `Loan updated`, loan: loan}); // body is JSON
-                            })
-                            .catch(error => {
-                                res.status(500)
-                                    .setHeader('content-type', 'application/json')
-                                    .send({error: `Server error: ${error.name}`});
-                            });
-                    }
-                }
-            )
-            .catch(error => {
-                res.status(500)
-                    .setHeader('content-type', 'application/json')
-                    .send({error: `Server error: ${error.name}`});
-            });
-    }
-});
-
-router.delete('/library/loan/:bookID&:studentID', (req, res) => {
-    const {bookID} = req.params; // get code from URI
-    const {studentID} = req.params; // get name from URI
 
     Loan.findOne({
         where: {
@@ -289,23 +231,60 @@ router.delete('/library/loan/:bookID&:studentID', (req, res) => {
         }
     })
         .then(loan => {
-            if (loan) { // loan found
-                loan.destroy()
-                    .then(() => {
-                        res.status(200)
-                            .setHeader('content-type', 'application/json')
-                            .send({message: `Loan deleted: ${bookID} and ${studentID}`});
-                    })
-                    .catch(error => {
-                        res.status(500)
-                            .setHeader('content-type', 'application/json')
-                            .send({error: `Server error: ${error.name}`});
-                    });
-            } else { // loan not found
-                res.status(404)
-                    .setHeader('content-type', 'application/json')
-                    .send({message: `Loan not found for id: ${bookID} and ${studentID}`});
+                if (!loan) {
+                    res.status(404)
+                        .setHeader('content-type', 'application/json')
+                        .send({message: `Loan not found for book ID ${bookID} and student ID ${studentID}`});
+                } else if (!posted_loan.checkout && !posted_loan.due && !posted_loan.returned) {
+                    res.status(422)
+                        .setHeader('content-type', 'application/json')
+                        .send({error: `Bad request - Given book ID and student ID must be valid and at least some of the Checkout, Due and Returned fields are provided`}); // bad request
+                } else if (posted_loan.due && ((Date.parse(posted_loan.due) > ninetyDaysFromToday) || (Date.parse(posted_loan.due) < date.getTime()) || !posted_loan.due
+                    || !Date.parse(posted_loan.due) > 0)) { // check if due date is valid
+                    res.status(422)
+                        .setHeader('content-type', 'application/json')
+                        .send({error: `Bad request - Due date must valid (01/30/2022 23:30:30) and no more than 90 days in the future`}); // bad request
+                } else if (posted_loan.checkout && (!Date.parse(posted_loan.checkout) > 0)) { // check if checkout date is valid
+                    res.status(422)
+                        .setHeader('content-type', 'application/json')
+                        .send({error: `Bad request - Checkout date must valid (01/30/2022 23:30:30)`}); // bad request
+                } else { // loan found
+                    if (posted_loan.checkout)
+                        loan.checkout = posted_loan.checkout;
+
+                    if (posted_loan.due)
+                        loan.due = posted_loan.due;
+
+                    if (posted_loan.returned)
+                        loan.returned = posted_loan.returned;
+
+                    loan.save()
+                        .then(loan => {
+                            res.status(200)
+                                .setHeader('content-type', 'application/json')
+                                .send({message: `Loan updated`, loan: loan}); // body is JSON
+                        })
+                        .catch(error => {
+                            res.status(500)
+                                .setHeader('content-type', 'application/json')
+                                .send({error: `Server error: ${error.name}`});
+                        });
+                }
             }
+        )
+        .catch(error => {
+            res.status(500)
+                .setHeader('content-type', 'application/json')
+                .send({error: `Server error: ${error.name}`});
+        });
+});
+
+router.get('/library/loans', (req, res) => {
+    Loan.findAll()
+        .then(loans => {
+            res.status(200)
+                .setHeader('content-type', 'application/json')
+                .send(loans); // body is JSON
         })
         .catch(error => {
             res.status(500)

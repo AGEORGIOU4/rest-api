@@ -27,7 +27,11 @@ const Book = sequelize.define('Book', {
     },
     year: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            min: 1900,
+            max: 2022
+        }
     },
     loanable: {
         type: DataTypes.BOOLEAN,
@@ -42,6 +46,10 @@ const Book = sequelize.define('Book', {
     timestamps: false // skip custom timestamp columns
 });
 
-sequelize.sync();
+async function init() {
+    await sequelize.sync();
+}
+
+init();
 
 exports.Book = Book;

@@ -21,6 +21,10 @@ const Module = sequelize.define('Module', {
     timestamps: false // skip custom timestamp columns
 });
 
-sequelize.sync();
+async function init() {
+    await sequelize.sync();
+}
+
+init();
 
 exports.Module = Module;

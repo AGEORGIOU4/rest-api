@@ -6,18 +6,35 @@ const {Module} = require("../concepts/module.js")
 
 // ======== Modules API Calls ======== //
 
-router.get('/library/modules', (req, res) => {
-    Module.findAll()
-        .then(modules => {
-            res.status(200)
-                .setHeader('content-type', 'application/json')
-                .send(modules); // body is JSON
+router.post('/library/module', (req, res) => {
+    const posted_module = req.body; // submitted module
+
+    if (!posted_module.code || !posted_module.name) { // invalid module posted
+        res.status(422)
+            .setHeader('content-type', 'application/json')
+            .send({error: `Bad request - All fields must be completed`}); // bad request
+    } else {
+        Module.create({
+            code: posted_module.code,
+            name: posted_module.name,
         })
-        .catch(error => {
-            res.status(500)
-                .setHeader('content-type', 'application/json')
-                .send({error: `Server error: ${error.name}`});
-        });
+            .then(module => {
+                res.status(200)
+                    .setHeader('content-type', 'application/json')
+                    .send({message: `Module added`, module: module}); // body is JSON
+            })
+            .catch(error => {
+                if (error.name === 'SequelizeUniqueConstraintError') {
+                    res.status(409)
+                        .setHeader('content-type', 'application/json')
+                        .send({error: `Module already exists for code: ${posted_module.code}`}); // resource already exists
+                } else {
+                    res.status(500)
+                        .setHeader('content-type', 'application/json')
+                        .send({error: `Server error: ${error.name}`});
+                }
+            });
+    }
 });
 
 router.get('/library/module/:code', (req, res) => {
@@ -73,32 +90,6 @@ router.get('/library/module', (req, res) => {
                 res.status(200)
                     .setHeader('content-type', 'application/json')
                     .send(module); // body is JSON
-
-            })
-            .catch(error => {
-                res.status(500)
-                    .setHeader('content-type', 'application/json')
-                    .send({error: `Server error: ${error.name}`});
-            });
-    }
-});
-
-router.post('/library/module', (req, res) => {
-    const posted_module = req.body; // submitted module
-
-    if (!posted_module || !posted_module.code || !posted_module.name) { // invalid module posted
-        res.status(422)
-            .setHeader('content-type', 'application/json')
-            .send({error: `Bad request - All fields must be completed, and code must be unique`}); // bad request
-    } else {
-        Module.create({
-            code: posted_module.code,
-            name: posted_module.name,
-        })
-            .then(module => {
-                res.status(200)
-                    .setHeader('content-type', 'application/json')
-                    .send({message: `Module added`, module: module}); // body is JSON
             })
             .catch(error => {
                 res.status(500)
@@ -113,56 +104,64 @@ router.put('/library/module/:code&:name', (req, res) => {
     const {name} = req.params; // get name from URI
     const posted_module = req.body; // submitted module
 
-    if (!code || !name) {
-        res.status(422)
-            .setHeader('content-type', 'application/json')
-            .send({message: `Code and name are required as parameters`});
-    } else {
-        Module.findOne({
-            where: {
-                code: {
-                    [Op.like]: `${code}`
-                },
-                name: {
-                    [Op.like]: `${name}`
-                }
+    Module.findOne({
+        where: {
+            code: {
+                [Op.like]: `${code}`
+            },
+            name: {
+                [Op.like]: `${name}`
+            }
+        }
+    })
+        .then(module => {
+            if (!module) {
+                res.status(404)
+                    .setHeader('content-type', 'application/json')
+                    .send({message: `Module not found for code ${code} and name ${name}`});
+            } else if (!posted_module.name) {
+                res.status(422)
+                    .setHeader('content-type', 'application/json')
+                    .send({error: `Bad request - Given code and name must be valid and non-empty`}); // bad request
+            } else { // module found
+                if (posted_module.code)
+                    module.code = posted_module.code;
+
+                if (posted_module.name)
+                    module.name = posted_module.name;
+
+                module.save()
+                    .then(module => {
+                        res.status(200)
+                            .setHeader('content-type', 'application/json')
+                            .send({message: `Module updated`, module: module}); // body is JSON
+                    })
+                    .catch(error => {
+                        res.status(500)
+                            .setHeader('content-type', 'application/json')
+                            .send({error: `Server error: ${error.name}`});
+                    });
             }
         })
-            .then(module => {
-                if (!module) {
-                    res.status(404)
-                        .setHeader('content-type', 'application/json')
-                        .send({message: `Module not found for code ${code} and name ${name}`});
-                } else if (!posted_module.code && !posted_module.name) {
-                    res.status(422)
-                        .setHeader('content-type', 'application/json')
-                        .send({error: `Bad request - Given code must be valid and name is non-empty`}); // bad request
-                } else { // module found
-                    if (posted_module.code)
-                        module.code = posted_module.code;
+        .catch(error => {
+            res.status(500)
+                .setHeader('content-type', 'application/json')
+                .send({error: `Server error: ${error.name}`});
+        });
+});
 
-                    if (posted_module.name)
-                        module.name = posted_module.name;
-
-                    module.save()
-                        .then(module => {
-                            res.status(200)
-                                .setHeader('content-type', 'application/json')
-                                .send({message: `Module updated`, module: module}); // body is JSON
-                        })
-                        .catch(error => {
-                            res.status(500)
-                                .setHeader('content-type', 'application/json')
-                                .send({error: `Server error: ${error.name}`});
-                        });
-                }
-            })
-            .catch(error => {
-                res.status(500)
-                    .setHeader('content-type', 'application/json')
-                    .send({error: `Server error: ${error.name}`});
-            });
-    }
+router.get('/library/modules', (req, res) => {
+    Module.findAll()
+        .then(modules => {
+            res.status(200)
+                .setHeader('content-type', 'application/json')
+                .send(modules); // body is JSON
+        })
+        .catch(error => {
+            res.status(500)
+                .setHeader('content-type', 'application/json')
+                .send({error: `Server error: ${error.name}`});
+        });
 });
 
 module.exports = router;
