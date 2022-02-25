@@ -1,59 +1,43 @@
 const express = require('express')
 const router = express.Router();
 
-// Sequelize Model
-const {Sequelize, DataTypes, Op} = require('sequelize');
-const error = require("express");
-const sequelize = new Sequelize({
-    dialect: 'sqlite',
-    storage: 'db/library.db'
-})
-
-const Student = sequelize.define('Student', {
-    id: {
-        type: DataTypes.INTEGER,
-        require: true,
-        primaryKey: true,
-        autoIncrement: true
-    },
-    name: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    yob: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-    },
-}, {
-    tableName: 'students', // table name
-    timestamps: false // skip custom timestamp columns
-});
-
-sequelize.sync();
+const {Op} = require('sequelize');
+const {Student} = require("../concepts/student.js")
 
 // ======== Students API Calls ======== //
 
-router.get('/library/students', (req, res) => {
-    Student.findAll()
-        .then(students => {
-            res.status(200)
-                .setHeader('content-type', 'application/json')
-                .send(students); // body is JSON
+router.post('/library/student', (req, res) => {
+    const posted_student = req.body; // submitted student
+
+    if (!posted_student.name || !posted_student.yob || posted_student.yob < 1900 || posted_student.yob > 2022) { // invalid student posted
+        res.status(422)
+            .setHeader('content-type', 'application/json')
+            .send({error: `Bad request - All fields must be completed, and yob must be in range of 1900-2022`}); // bad request
+    } else {
+        Student.create({
+            name: posted_student.name,
+            yob: posted_student.yob,
         })
-        .catch(error => {
-            res.status(500)
-                .setHeader('content-type', 'application/json')
-                .send({error: `Server error: ${error.name}`});
-        });
+            .then(student => {
+                res.status(200)
+                    .setHeader('content-type', 'application/json')
+                    .send({message: `Student added`, student: student}); // body is JSON
+            })
+            .catch(error => {
+                res.status(500)
+                    .setHeader('content-type', 'application/json')
+                    .send({error: `Server error: ${error.name}`});
+            });
+    }
 });
 
 router.get('/library/student/:id', (req, res) => {
     const {id} = req.params; // extract 'id' from request
 
-    if (!id || isNaN(id)) {
+    if (isNaN(id)) {
         res.status(422)
             .setHeader('content-type', 'application/json')
-            .send({message: `Query is empty or ID is non-numeric`});
+            .send({message: `ID is non-numeric`});
     } else {
         Student.findOne({where: {id: id}})
             .then(student => {
@@ -95,36 +79,7 @@ router.get('/library/student', (req, res) => {
                     res.status(200)
                         .setHeader('content-type', 'application/json')
                         .send(student); // body is JSON
-                } else { // student not found
-                    res.status(404)
-                        .setHeader('content-type', 'application/json')
-                        .send({message: `Student not found for name: ${name}`});
                 }
-            })
-            .catch(error => {
-                res.status(500)
-                    .setHeader('content-type', 'application/json')
-                    .send({error: `Server error: ${error.name}`});
-            });
-    }
-});
-
-router.post('/library/student', (req, res) => {
-    const posted_student = req.body; // submitted student
-
-    if (!posted_student || !posted_student.name || !posted_student.yob || posted_student.yob < 1900 || posted_student.yob > 2022) { // invalid student posted
-        res.status(422)
-            .setHeader('content-type', 'application/json')
-            .send({error: `Bad request - All fields must be completed, and yob must be in range of 1900-2022`}); // bad request
-    } else {
-        Student.create({
-            name: posted_student.name,
-            yob: posted_student.yob,
-        })
-            .then(student => {
-                res.status(200)
-                    .setHeader('content-type', 'application/json')
-                    .send({message: `Student added`, student: student}); // body is JSON
             })
             .catch(error => {
                 res.status(500)
@@ -138,10 +93,10 @@ router.put('/library/student/:id', (req, res) => {
     const {id} = req.params; // get id from URI
     const posted_student = req.body; // submitted student
 
-    if (!id || isNaN(id)) {
+    if (isNaN(id)) {
         res.status(422)
             .setHeader('content-type', 'application/json')
-            .send({message: `Query is empty or ID is non-numeric`});
+            .send({message: `ID is non-numeric`});
     } else {
         Student.findOne({where: {id: id}})
             .then(student => {
@@ -149,7 +104,7 @@ router.put('/library/student/:id', (req, res) => {
                     res.status(404)
                         .setHeader('content-type', 'application/json')
                         .send({message: `Student not found for id: ${id}`});
-                } else if (!posted_student.name && !posted_student.yob) {
+                } else if (Object.keys(posted_student).length === 0) {
                     res.status(422)
                         .setHeader('content-type', 'application/json')
                         .send({error: `Bad request - Given ID must be valid and at least one or more fields must exist`}); // bad request
@@ -179,6 +134,20 @@ router.put('/library/student/:id', (req, res) => {
                     .send({error: `Server error: ${error.name}`});
             });
     }
+});
+
+router.get('/library/students', (req, res) => {
+    Student.findAll()
+        .then(students => {
+            res.status(200)
+                .setHeader('content-type', 'application/json')
+                .send(students); // body is JSON
+        })
+        .catch(error => {
+            res.status(500)
+                .setHeader('content-type', 'application/json')
+                .send({error: `Server error: ${error.name}`});
+        });
 });
 
 module.exports = router;
