@@ -9,6 +9,12 @@ const {Book} = require("../concepts/book.js")
 const {Student} = require("../concepts/student.js")
 
 const Loan = sequelize.define('Loan', {
+    id: {
+        type: DataTypes.INTEGER,
+        require: true,
+        primaryKey: true,
+        autoIncrement: true
+    },
     bookID: {
         type: DataTypes.INTEGER,
         require: true,

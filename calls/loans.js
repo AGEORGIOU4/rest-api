@@ -67,11 +67,11 @@ router.post('/library/loan', (req, res) => {
                 || !Date.parse(posted_loan.due) > 0) { // check if due date is valid
                 res.status(422)
                     .setHeader('content-type', 'application/json')
-                    .send({error: `Bad request - Due date must valid (01/30/2022 23:30:30) and no more than 90 days in the future`}); // bad request
-            } else if (!Date.parse(posted_loan.checkout) > 0) { // check if checkout date is valid
+                    .send({error: `Bad request - Due date must be valid (01/30/2022 23:30:30) and no more than 90 days in the future`}); // bad request
+            } else if (!Date.parse(posted_loan.checkout) > 0 || Date.parse(posted_loan.checkout) >= Date.parse(posted_loan.due)) { // check if checkout date is valid
                 res.status(422)
                     .setHeader('content-type', 'application/json')
-                    .send({error: `Bad request - Checkout date must valid (01/30/2022 23:30:30)`}); // bad request
+                    .send({error: `Bad request - Checkout date must be valid (01/30/2022 23:30:30) and earlier than due`}); // bad request
             } else {
                 getPendingLoans(posted_loan.bookID, posted_loan.studentID).then(() => {
                     if (isLoanedBySameStudent) {
@@ -219,22 +219,18 @@ router.get('/library/loans/studentID:id/:pending?', (req, res) => {
     }
 });
 
-router.put('/library/loan/:bookID&:studentID', (req, res) => {
-    const {bookID} = req.params; // get code from URI
-    const {studentID} = req.params; // get name from URI
+router.put('/library/loan/:id', (req, res) => {
+    const {id} = req.params; // get code from URI
     const posted_loan = req.body; // submitted loan
 
     Loan.findOne({
-        where: {
-            bookID: bookID,
-            studentID: studentID
-        }
+        where: {id: id}
     })
         .then(loan => {
                 if (!loan) {
                     res.status(404)
                         .setHeader('content-type', 'application/json')
-                        .send({message: `Loan not found for book ID ${bookID} and student ID ${studentID}`});
+                        .send({message: `Loan not found for id ${id}`});
                 } else if (!posted_loan.checkout && !posted_loan.due && !posted_loan.returned) {
                     res.status(422)
                         .setHeader('content-type', 'application/json')
@@ -243,11 +239,11 @@ router.put('/library/loan/:bookID&:studentID', (req, res) => {
                     || !Date.parse(posted_loan.due) > 0)) { // check if due date is valid
                     res.status(422)
                         .setHeader('content-type', 'application/json')
-                        .send({error: `Bad request - Due date must valid (01/30/2022 23:30:30) and no more than 90 days in the future`}); // bad request
-                } else if (posted_loan.checkout && (!Date.parse(posted_loan.checkout) > 0)) { // check if checkout date is valid
+                        .send({error: `Bad request - Due date must be valid (01/30/2022 23:30:30) and no more than 90 days in the future`}); // bad request
+                } else if (posted_loan.checkout && (!Date.parse(posted_loan.checkout) > 0 || Date.parse(posted_loan.checkout) >= Date.parse(posted_loan.due))) { // check if checkout date is valid
                     res.status(422)
                         .setHeader('content-type', 'application/json')
-                        .send({error: `Bad request - Checkout date must valid (01/30/2022 23:30:30)`}); // bad request
+                        .send({error: `Bad request - Checkout date must be valid (01/30/2022 23:30:30)`}); // bad request
                 } else { // loan found
                     if (posted_loan.checkout)
                         loan.checkout = posted_loan.checkout;
