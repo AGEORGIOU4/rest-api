@@ -21,7 +21,7 @@ router.put('/library/bibliography/:moduleCode/:bookID', (req, res) => {
                 }
             })
                 .then(bibliography => {
-                    if (!bibliography) {
+                    if (!bibliography) { // bibliography not found
                         Bibliography.create({
                             moduleCode: moduleCode,
                             bookID: bookID,

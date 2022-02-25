@@ -141,9 +141,9 @@ router.get('/library/loans/bookID:id/:pending?', (req, res) => {
         } else {
             let tmpPending = pending; // pending param gets 0 || 1 instead of true or false
             if (pending === 'false') {
-                tmpPending = 0;
-            } else if (pending === 'true') {
                 tmpPending = 1;
+            } else if (pending === 'true') {
+                tmpPending = 0;
             }
             Loan.findAll({
                 where: {
