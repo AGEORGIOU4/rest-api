@@ -1,9 +1,8 @@
 // Sequelize Model
-const {Sequelize, DataTypes} = require("sequelize");
-const sequelize = new Sequelize({
-    dialect: 'sqlite',
-    storage: 'db/library.db'
-})
+const {DataTypes} = require("sequelize");
+const {sequelizeFn} = require("../db/createDB");
+
+const sequelize = sequelizeFn();
 
 const Student = sequelize.define('Student', {
     id: {
