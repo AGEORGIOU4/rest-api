@@ -1,0 +1,2719 @@
+{
+	"info": {
+		"_postman_id": "a19e7d1d-9821-4e15-80b5-a828c48f2d56",
+		"name": "REST APIs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Bibliographies",
+			"item": [
+				{
+					"name": "Put a bibliography",
+					"item": [
+						{
+							"name": "OK 200 {created}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/library/bibliography/CO2509/1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"bibliography",
+										"CO2509",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OK 200 {do nothing}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/library/bibliography/CO2509/1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"bibliography",
+										"CO2509",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Get Bibliography by ModuleCode",
+					"item": [
+						{
+							"name": "OK 200 {retrieved}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/library/bibliography/CO2509",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"bibliography",
+										"CO2509"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OK 404 {not found}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/library/bibliography/CO2505",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"bibliography",
+										"CO2505"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Delete an existing Bibliography",
+					"item": [
+						{
+							"name": "OK 200 {deleted}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/library/bibliography/CO2509/1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"bibliography",
+										"CO2509",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OK 200 {not found}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/library/bibliography/CO2509/12345",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"bibliography",
+										"CO2509",
+										"12345"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "localhost:3000/library/bibliographies",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code is 409\", function () {\r",
+									"    pm.response.to.have.status(409);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/library/bibliographies",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"library",
+								"bibliographies"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Books",
+			"item": [
+				{
+					"name": "Add a new book",
+					"item": [
+						{
+							"name": "OK 200 {added}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"authors\": \"Leonardo\",\r\n    \"title\": \"Harry Potter\",\r\n    \"isbn\": \"91728-34-63-243-0\",\r\n    \"year\": \"1994\",\r\n    \"loanable\": \"true\",\r\n    \"quantity\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/library/book",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"book"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OK 200 {added}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"authors\": \"Peter\",\r\n    \"title\": \"Titanic\",\r\n    \"isbn\": \"91728-31-63-243-0\",\r\n    \"year\": \"1994\",\r\n    \"loanable\": \"false\",\r\n    \"quantity\": 30\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/library/book",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"book"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OK 422 {empty field}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 422\", function () {\r",
+											"    pm.response.to.have.status(422);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"authors\": \"\",\r\n    \"title\": \"Harry Potter\",\r\n    \"isbn\": \"91728-34-63-243-0\",\r\n    \"year\": \"1994\",\r\n    \"loanable\": \"true\",\r\n    \"quantity\": 30\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/library/book",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"book"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OK 422 {invalid year}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 422\", function () {\r",
+											"    pm.response.to.have.status(422);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"authors\": \"Leonardo\",\r\n    \"title\": \"Harry Potter\",\r\n    \"isbn\": \"11728-34-63-243-0\",\r\n    \"year\": \"2025\",\r\n    \"loanable\": \"true\",\r\n    \"quantity\": 30\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/library/book",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"book"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OK 422 {quantity < 0}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 422\", function () {\r",
+											"    pm.response.to.have.status(422);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"authors\": \"Leonardo\",\r\n    \"title\": \"Harry Potter\",\r\n    \"isbn\": \"11728-34-63-243-0\",\r\n    \"year\": \"2025\",\r\n    \"loanable\": \"true\",\r\n    \"quantity\": -1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/library/book",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"book"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OK 409 {already exists}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 409\", function () {\r",
+											"    pm.response.to.have.status(409);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"authors\": \"Leonardo\",\r\n    \"title\": \"Harry Potter\",\r\n    \"isbn\": \"91728-34-63-243-0\",\r\n    \"year\": \"1994\",\r\n    \"loanable\": \"true\",\r\n    \"quantity\": 30\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/library/book",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"book"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Get book by ID",
+					"item": [
+						{
+							"name": "OK 200 {retrieved}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/library/book/1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"book",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OK 422 {non-numeric id}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 422\", function () {\r",
+											"    pm.response.to.have.status(422);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/library/book/a",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"book",
+										"a"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OK 404 {not found}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/library/book/12345",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"book",
+										"12345"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Search book by title",
+					"item": [
+						{
+							"name": "OK 200 {retrieved}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/library/book?title=harry potter",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"book"
+									],
+									"query": [
+										{
+											"key": "title",
+											"value": "harry potter"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OK 200 {empty array}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/library/book?title=titanic",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"book"
+									],
+									"query": [
+										{
+											"key": "title",
+											"value": "titanic"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OK 422 {error message}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 422\", function () {\r",
+											"    pm.response.to.have.status(422);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/library/book?title=",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"book"
+									],
+									"query": [
+										{
+											"key": "title",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Edit an existing  book for a given ID",
+					"item": [
+						{
+							"name": "OK 200 {updated}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"loanable\": \"true\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/library/book/1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"book",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OK 422 {non-numeric id}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 422\", function () {\r",
+											"    pm.response.to.have.status(422);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/library/book/a",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"book",
+										"a"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OK 404 {not found}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"quantity\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/library/book/12345",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"book",
+										"12345"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OK 422 {quantity decreased}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 422\", function () {\r",
+											"    pm.response.to.have.status(422);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"quantity\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/library/book/2",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"book",
+										"2"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "localhost:3000/library/books",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/library/books",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"library",
+								"books"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Loans",
+			"item": [
+				{
+					"name": "Add a loan",
+					"item": [
+						{
+							"name": "OK 200 {added}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"bookID\": 1,\r\n    \"studentID\": 1,\r\n    \"checkout\": \"04/25/2022\",\r\n    \"due\": \"05/25/2022\",\r\n    \"returned\": \"false\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/library/loan",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"loan"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OK 422 {quantity of given book is lower}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 422\", function () {\r",
+											"    pm.response.to.have.status(422);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"bookID\": 1,\r\n    \"studentID\": 2,\r\n    \"checkout\": \"04/25/2022\",\r\n    \"due\": \"05/25/2022\",\r\n    \"returned\": \"false\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/library/loan",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"loan"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OK 500 {book ID does not exist}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 500\", function () {\r",
+											"    pm.response.to.have.status(500);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"bookID\": 11111,\r\n    \"studentID\": 1,\r\n    \"checkout\": \"04/25/2022\",\r\n    \"due\": \"05/25/2022\",\r\n    \"returned\": \"false\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/library/loan",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"loan"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OK 422 {student ID does not exist}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 422\", function () {\r",
+											"    pm.response.to.have.status(422);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"bookID\": 1,\r\n    \"studentID\": 11111,\r\n    \"checkout\": \"04/25/2022\",\r\n    \"due\": \"05/25/2022\",\r\n    \"returned\": \"false\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/library/loan",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"loan"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OK 422 {book is already loaned by student}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 422\", function () {\r",
+											"    pm.response.to.have.status(422);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"bookID\": 1,\r\n    \"studentID\": 1,\r\n    \"checkout\": \"04/25/2022\",\r\n    \"due\": \"05/25/2022\",\r\n    \"returned\": \"false\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/library/loan",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"loan"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OK 422 {book is not loanable}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 422\", function () {\r",
+											"    pm.response.to.have.status(422);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"bookID\": 2,\r\n    \"studentID\": 1,\r\n    \"checkout\": \"04/25/2022\",\r\n    \"due\": \"05/25/2022\",\r\n    \"returned\": \"false\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/library/loan",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"loan"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Get Loans by Book ID",
+					"item": [
+						{
+							"name": "OK 200 {retrieved}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "localhost:3000/library/loans/bookID1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"loans",
+										"bookID1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OK 200 {retrieved with pending}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/library/loans/bookID1/true",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"loans",
+										"bookID1",
+										"true"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OK 200 {retrieved empty JSON}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/library/loans/bookID12345/true",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"loans",
+										"bookID12345",
+										"true"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Get Loans by Student ID",
+					"item": [
+						{
+							"name": "OK 200 {retrieved}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "localhost:3000/library/loans/studentID1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"loans",
+										"studentID1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OK 200 {retrieved with pending}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/library/loans/studentID1/true",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"loans",
+										"studentID1",
+										"true"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OK 200 {retrieved empty JSON}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/library/loans/studentID12345/true",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"loans",
+										"studentID12345",
+										"true"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Edit an existing Loan for a given combination of BookID and StudentID",
+					"item": [
+						{
+							"name": "OK 200 {updated}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"due\" : \"05/06/2022\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/library/loan/1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"loan",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OK 422 {invalid due}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 422\", function () {\r",
+											"    pm.response.to.have.status(422);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"due\" : \"01/01/2022\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/library/loan/1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"loan",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OK 422 {invalid checkout}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 422\", function () {\r",
+											"    pm.response.to.have.status(422);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"checkout\" : \"01/1/as\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/library/loan/1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"loan",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OK 404 {not found}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"checkout\" : \"01/01/2022\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/library/loan/12345",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"loan",
+										"12345"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "localhost:3000/library/loans",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:3000/library/loans",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"library",
+								"loans"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Modules",
+			"item": [
+				{
+					"name": "Add new module",
+					"item": [
+						{
+							"name": "OK 200 {added}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"code\": \"CO2509\",\r\n    \"name\": \"Enterprise Applications\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/library/module",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"module"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OK 422 {empty field 1}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 422\", function () {\r",
+											"    pm.response.to.have.status(422);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"code\": \"\",\r\n    \"name\": \"Enterprise Applications\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/library/module",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"module"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OK 422 {empty field 2}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 422\", function () {\r",
+											"    pm.response.to.have.status(422);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"code\": \"CO1111\",\r\n    \"name\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/library/module",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"module"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OK 409 {duplicated code}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 422\", function () {\r",
+											"    pm.response.to.have.status(422);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"code\": \"CO2509\",\r\n    \"name\": \"Computing Skills\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/library/module",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"module"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Get module by CODE",
+					"item": [
+						{
+							"name": "OK 200 {retrieved}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "localhost:3000/library/module/Co2509",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"module",
+										"Co2509"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OK 422 {empty query}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 422\", function () {\r",
+											"    pm.response.to.have.status(422);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "localhost:3000/library/module/",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"module",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OK 404 {not found}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/library/module/12345",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"module",
+										"12345"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Search modules by name",
+					"item": [
+						{
+							"name": "OK 200 {retrieved}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/library/module?name=Enterprise",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"module"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "Enterprise"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OK 200 {empty JSON}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/library/module?name=Networking",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"module"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "Networking"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OK 422 {empty query}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 422\", function () {\r",
+											"    pm.response.to.have.status(422);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/library/module?name=",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"module"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Edit an existing module for a given CODE",
+					"item": [
+						{
+							"name": "OK 200 {updated}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Distributed Enterprise Applications\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/library/module/co2509&Enterprise Applications",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"module",
+										"co2509&Enterprise Applications"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OK 404 {not found}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Distributed Enterprise Applications\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/library/module/co2509&hello",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"module",
+										"co2509&hello"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "localhost:3000/library/modules",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:3000/library/modules",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"library",
+								"modules"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Students",
+			"item": [
+				{
+					"name": "Add a new student",
+					"item": [
+						{
+							"name": "OK 200 {added}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Andreas Georgiou\",\r\n    \"yob\": 1991\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/library/student",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"student"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OK 200 {added}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Panayiotis Fani\",\r\n    \"yob\": 1991\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/library/student",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"student"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OK 422 {empty field}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 422\", function () {\r",
+											"    pm.response.to.have.status(422);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"\",\r\n    \"yob\": 1991\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/library/student",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"student"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OK 422 {invalid year}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 422\", function () {\r",
+											"    pm.response.to.have.status(422);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Andreas Georgiou\",\r\n    \"yob\": 1891\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/library/student",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"student"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Get student by ID",
+					"item": [
+						{
+							"name": "OK 200 {retrieved}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/library/student/1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"student",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OK 422 {non-numeric}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 422\", function () {\r",
+											"    pm.response.to.have.status(422);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/library/student/abc",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"student",
+										"abc"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OK 422 {not found}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/library/student/19",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"student",
+										"19"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Search student by name",
+					"item": [
+						{
+							"name": "OK 200 {retrieved}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/library/student?name=andreas",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"student"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "andreas"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OK 422 {empty query}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 422\", function () {\r",
+											"    pm.response.to.have.status(422);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/library/student?name=",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"student"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Edit an existing student for a given ID",
+					"item": [
+						{
+							"name": "OK 200 {updated}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"George Poleos\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/library/student/1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"student",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OK 404 {not found}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/library/student/105",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"student",
+										"105"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OK 422 {no fields exist}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 422\", function () {\r",
+											"    pm.response.to.have.status(422);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/library/student/1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"student",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "localhost:3000/library/students",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:3000/library/students",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"library",
+								"students"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
