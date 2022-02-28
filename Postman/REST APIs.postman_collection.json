@@ -6,285 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "Bibliographies",
-			"item": [
-				{
-					"name": "Put a bibliography",
-					"item": [
-						{
-							"name": "OK 200 {created}",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Status code is 200\", function () {\r",
-											"    pm.response.to.have.status(200);\r",
-											"});\r",
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "localhost:3000/library/bibliography/CO2509/1",
-									"host": [
-										"localhost"
-									],
-									"port": "3000",
-									"path": [
-										"library",
-										"bibliography",
-										"CO2509",
-										"1"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "OK 200 {do nothing}",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Status code is 200\", function () {\r",
-											"    pm.response.to.have.status(200);\r",
-											"});\r",
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "localhost:3000/library/bibliography/CO2509/1",
-									"host": [
-										"localhost"
-									],
-									"port": "3000",
-									"path": [
-										"library",
-										"bibliography",
-										"CO2509",
-										"1"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
-					"name": "Get Bibliography by ModuleCode",
-					"item": [
-						{
-							"name": "OK 200 {retrieved}",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Status code is 200\", function () {\r",
-											"    pm.response.to.have.status(200);\r",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "localhost:3000/library/bibliography/CO2509",
-									"host": [
-										"localhost"
-									],
-									"port": "3000",
-									"path": [
-										"library",
-										"bibliography",
-										"CO2509"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "OK 404 {not found}",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Status code is 404\", function () {\r",
-											"    pm.response.to.have.status(404);\r",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "localhost:3000/library/bibliography/CO2505",
-									"host": [
-										"localhost"
-									],
-									"port": "3000",
-									"path": [
-										"library",
-										"bibliography",
-										"CO2505"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
-					"name": "Delete an existing Bibliography",
-					"item": [
-						{
-							"name": "OK 200 {deleted}",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Status code is 200\", function () {\r",
-											"    pm.response.to.have.status(200);\r",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "DELETE",
-								"header": [],
-								"url": {
-									"raw": "localhost:3000/library/bibliography/CO2509/1",
-									"host": [
-										"localhost"
-									],
-									"port": "3000",
-									"path": [
-										"library",
-										"bibliography",
-										"CO2509",
-										"1"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "OK 200 {not found}",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Status code is 404\", function () {\r",
-											"    pm.response.to.have.status(404);\r",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "DELETE",
-								"header": [],
-								"url": {
-									"raw": "localhost:3000/library/bibliography/CO2509/12345",
-									"host": [
-										"localhost"
-									],
-									"port": "3000",
-									"path": [
-										"library",
-										"bibliography",
-										"CO2509",
-										"12345"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
-					"name": "localhost:3000/library/bibliographies",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Status code is 409\", function () {\r",
-									"    pm.response.to.have.status(409);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:3000/library/bibliographies",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"library",
-								"bibliographies"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Books",
+			"name": "A - Books",
 			"item": [
 				{
 					"name": "Add a new book",
@@ -925,7 +647,7 @@
 					]
 				},
 				{
-					"name": "localhost:3000/library/books",
+					"name": "GET BOOKS",
 					"event": [
 						{
 							"listen": "test",
@@ -959,7 +681,1066 @@
 			]
 		},
 		{
-			"name": "Loans",
+			"name": "B - Students",
+			"item": [
+				{
+					"name": "Add a new student",
+					"item": [
+						{
+							"name": "OK 200 {added}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Andreas Georgiou\",\r\n    \"yob\": 1991\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/library/student",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"student"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OK 200 {added}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Panayiotis Fani\",\r\n    \"yob\": 1991\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/library/student",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"student"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OK 422 {empty field}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 422\", function () {\r",
+											"    pm.response.to.have.status(422);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"\",\r\n    \"yob\": 1991\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/library/student",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"student"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OK 422 {invalid year}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 422\", function () {\r",
+											"    pm.response.to.have.status(422);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Andreas Georgiou\",\r\n    \"yob\": 1891\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/library/student",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"student"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Get student by ID",
+					"item": [
+						{
+							"name": "OK 200 {retrieved}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/library/student/1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"student",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OK 422 {non-numeric}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 422\", function () {\r",
+											"    pm.response.to.have.status(422);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/library/student/abc",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"student",
+										"abc"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OK 422 {not found}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/library/student/19",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"student",
+										"19"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Search student by name",
+					"item": [
+						{
+							"name": "OK 200 {retrieved}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/library/student?name=andreas",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"student"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "andreas"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OK 422 {empty query}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 422\", function () {\r",
+											"    pm.response.to.have.status(422);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/library/student?name=",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"student"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Edit an existing student for a given ID",
+					"item": [
+						{
+							"name": "OK 200 {updated}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"George Poleos\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/library/student/1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"student",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OK 404 {not found}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/library/student/105",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"student",
+										"105"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OK 422 {no fields exist}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 422\", function () {\r",
+											"    pm.response.to.have.status(422);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/library/student/1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"student",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "GET STUDENTS",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:3000/library/students",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"library",
+								"students"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "C - Modules",
+			"item": [
+				{
+					"name": "Add new module",
+					"item": [
+						{
+							"name": "OK 200 {added}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"code\": \"CO2509\",\r\n    \"name\": \"Enterprise Applications\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/library/module",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"module"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OK 422 {empty field 1}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 422\", function () {\r",
+											"    pm.response.to.have.status(422);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"code\": \"\",\r\n    \"name\": \"Enterprise Applications\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/library/module",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"module"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OK 422 {empty field 2}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 422\", function () {\r",
+											"    pm.response.to.have.status(422);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"code\": \"CO1111\",\r\n    \"name\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/library/module",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"module"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OK 409 {duplicated code}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 409\", function () {\r",
+											"    pm.response.to.have.status(409);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"code\": \"CO2509\",\r\n    \"name\": \"Computing Skills\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/library/module",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"module"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Get module by CODE",
+					"item": [
+						{
+							"name": "OK 200 {retrieved}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "localhost:3000/library/module/Co2509",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"module",
+										"Co2509"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OK 422 {empty query}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 422\", function () {\r",
+											"    pm.response.to.have.status(422);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "localhost:3000/library/module/",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"module",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OK 404 {not found}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/library/module/12345",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"module",
+										"12345"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Search modules by name",
+					"item": [
+						{
+							"name": "OK 200 {retrieved}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/library/module?name=Enterprise",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"module"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "Enterprise"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OK 200 {empty JSON}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/library/module?name=Networking",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"module"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "Networking"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OK 422 {empty query}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 422\", function () {\r",
+											"    pm.response.to.have.status(422);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/library/module?name=",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"module"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Edit an existing module for a given CODE",
+					"item": [
+						{
+							"name": "OK 200 {updated}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Distributed Enterprise Applications\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/library/module/co2509&Enterprise Applications",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"module",
+										"co2509&Enterprise Applications"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OK 404 {not found}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Distributed Enterprise Applications\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/library/module/co2509&hello",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"module",
+										"co2509&hello"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "GET MODULES",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:3000/library/modules",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"library",
+								"modules"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "D - Loans",
 			"item": [
 				{
 					"name": "Add a loan",
@@ -1461,7 +2242,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"due\" : \"05/06/2022\"\r\n}",
+									"raw": "{\r\n        \"returned\": \"false\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1612,7 +2393,7 @@
 					]
 				},
 				{
-					"name": "localhost:3000/library/loans",
+					"name": "GET LOANS",
 					"event": [
 						{
 							"listen": "test",
@@ -1653,13 +2434,13 @@
 			]
 		},
 		{
-			"name": "Modules",
+			"name": "E - Bibliographies",
 			"item": [
 				{
-					"name": "Add new module",
+					"name": "Put a bibliography",
 					"item": [
 						{
-							"name": "OK 200 {added}",
+							"name": "OK 200 {created}",
 							"event": [
 								{
 									"listen": "test",
@@ -1667,18 +2448,19 @@
 										"exec": [
 											"pm.test(\"Status code is 200\", function () {\r",
 											"    pm.response.to.have.status(200);\r",
-											"});"
+											"});\r",
+											""
 										],
 										"type": "text/javascript"
 									}
 								}
 							],
 							"request": {
-								"method": "POST",
+								"method": "PUT",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"code\": \"CO2509\",\r\n    \"name\": \"Enterprise Applications\"\r\n}",
+									"raw": "{\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1686,40 +2468,43 @@
 									}
 								},
 								"url": {
-									"raw": "localhost:3000/library/module",
+									"raw": "localhost:3000/library/bibliography/CO2509/1",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
 										"library",
-										"module"
+										"bibliography",
+										"CO2509",
+										"1"
 									]
 								}
 							},
 							"response": []
 						},
 						{
-							"name": "OK 422 {empty field 1}",
+							"name": "OK 200 {do nothing}",
 							"event": [
 								{
 									"listen": "test",
 									"script": {
 										"exec": [
-											"pm.test(\"Status code is 422\", function () {\r",
-											"    pm.response.to.have.status(422);\r",
-											"});"
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											""
 										],
 										"type": "text/javascript"
 									}
 								}
 							],
 							"request": {
-								"method": "POST",
+								"method": "PUT",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"code\": \"\",\r\n    \"name\": \"Enterprise Applications\"\r\n}",
+									"raw": "{\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1727,96 +2512,16 @@
 									}
 								},
 								"url": {
-									"raw": "localhost:3000/library/module",
+									"raw": "localhost:3000/library/bibliography/CO2509/1",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
 										"library",
-										"module"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "OK 422 {empty field 2}",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Status code is 422\", function () {\r",
-											"    pm.response.to.have.status(422);\r",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"code\": \"CO1111\",\r\n    \"name\": \"\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "localhost:3000/library/module",
-									"host": [
-										"localhost"
-									],
-									"port": "3000",
-									"path": [
-										"library",
-										"module"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "OK 409 {duplicated code}",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Status code is 422\", function () {\r",
-											"    pm.response.to.have.status(422);\r",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"code\": \"CO2509\",\r\n    \"name\": \"Computing Skills\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "localhost:3000/library/module",
-									"host": [
-										"localhost"
-									],
-									"port": "3000",
-									"path": [
-										"library",
-										"module"
+										"bibliography",
+										"CO2509",
+										"1"
 									]
 								}
 							},
@@ -1825,7 +2530,7 @@
 					]
 				},
 				{
-					"name": "Get module by CODE",
+					"name": "Get Bibliography by ModuleCode",
 					"item": [
 						{
 							"name": "OK 200 {retrieved}",
@@ -1842,66 +2547,19 @@
 									}
 								}
 							],
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
 							"request": {
 								"method": "GET",
 								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
 								"url": {
-									"raw": "localhost:3000/library/module/Co2509",
+									"raw": "localhost:3000/library/bibliography/CO2509",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
 										"library",
-										"module",
-										"Co2509"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "OK 422 {empty query}",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Status code is 422\", function () {\r",
-											"    pm.response.to.have.status(422);\r",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"method": "GET",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
-								"url": {
-									"raw": "localhost:3000/library/module/",
-									"host": [
-										"localhost"
-									],
-									"port": "3000",
-									"path": [
-										"library",
-										"module",
-										""
+										"bibliography",
+										"CO2509"
 									]
 								}
 							},
@@ -1926,14 +2584,87 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:3000/library/module/12345",
+									"raw": "localhost:3000/library/bibliography/CO2505",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
 										"library",
-										"module",
+										"bibliography",
+										"CO2505"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Delete an existing Bibliography",
+					"item": [
+						{
+							"name": "OK 200 {deleted}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/library/bibliography/CO2509/1",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"bibliography",
+										"CO2509",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OK 200 {not found}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:3000/library/bibliography/CO2509/12345",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"bibliography",
+										"CO2509",
 										"12345"
 									]
 								}
@@ -1943,739 +2674,7 @@
 					]
 				},
 				{
-					"name": "Search modules by name",
-					"item": [
-						{
-							"name": "OK 200 {retrieved}",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Status code is 200\", function () {\r",
-											"    pm.response.to.have.status(200);\r",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "localhost:3000/library/module?name=Enterprise",
-									"host": [
-										"localhost"
-									],
-									"port": "3000",
-									"path": [
-										"library",
-										"module"
-									],
-									"query": [
-										{
-											"key": "name",
-											"value": "Enterprise"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "OK 200 {empty JSON}",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Status code is 200\", function () {\r",
-											"    pm.response.to.have.status(200);\r",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "localhost:3000/library/module?name=Networking",
-									"host": [
-										"localhost"
-									],
-									"port": "3000",
-									"path": [
-										"library",
-										"module"
-									],
-									"query": [
-										{
-											"key": "name",
-											"value": "Networking"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "OK 422 {empty query}",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Status code is 422\", function () {\r",
-											"    pm.response.to.have.status(422);\r",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "localhost:3000/library/module?name=",
-									"host": [
-										"localhost"
-									],
-									"port": "3000",
-									"path": [
-										"library",
-										"module"
-									],
-									"query": [
-										{
-											"key": "name",
-											"value": ""
-										}
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
-					"name": "Edit an existing module for a given CODE",
-					"item": [
-						{
-							"name": "OK 200 {updated}",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Status code is 200\", function () {\r",
-											"    pm.response.to.have.status(200);\r",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"Distributed Enterprise Applications\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "localhost:3000/library/module/co2509&Enterprise Applications",
-									"host": [
-										"localhost"
-									],
-									"port": "3000",
-									"path": [
-										"library",
-										"module",
-										"co2509&Enterprise Applications"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "OK 404 {not found}",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Status code is 404\", function () {\r",
-											"    pm.response.to.have.status(404);\r",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"Distributed Enterprise Applications\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "localhost:3000/library/module/co2509&hello",
-									"host": [
-										"localhost"
-									],
-									"port": "3000",
-									"path": [
-										"library",
-										"module",
-										"co2509&hello"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
-					"name": "localhost:3000/library/modules",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Status code is 404\", function () {\r",
-									"    pm.response.to.have.status(404);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "localhost:3000/library/modules",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"library",
-								"modules"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Students",
-			"item": [
-				{
-					"name": "Add a new student",
-					"item": [
-						{
-							"name": "OK 200 {added}",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Status code is 200\", function () {\r",
-											"    pm.response.to.have.status(200);\r",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"Andreas Georgiou\",\r\n    \"yob\": 1991\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "localhost:3000/library/student",
-									"host": [
-										"localhost"
-									],
-									"port": "3000",
-									"path": [
-										"library",
-										"student"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "OK 200 {added}",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Status code is 200\", function () {\r",
-											"    pm.response.to.have.status(200);\r",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"Panayiotis Fani\",\r\n    \"yob\": 1991\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "localhost:3000/library/student",
-									"host": [
-										"localhost"
-									],
-									"port": "3000",
-									"path": [
-										"library",
-										"student"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "OK 422 {empty field}",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Status code is 422\", function () {\r",
-											"    pm.response.to.have.status(422);\r",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"\",\r\n    \"yob\": 1991\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "localhost:3000/library/student",
-									"host": [
-										"localhost"
-									],
-									"port": "3000",
-									"path": [
-										"library",
-										"student"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "OK 422 {invalid year}",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Status code is 422\", function () {\r",
-											"    pm.response.to.have.status(422);\r",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"Andreas Georgiou\",\r\n    \"yob\": 1891\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "localhost:3000/library/student",
-									"host": [
-										"localhost"
-									],
-									"port": "3000",
-									"path": [
-										"library",
-										"student"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
-					"name": "Get student by ID",
-					"item": [
-						{
-							"name": "OK 200 {retrieved}",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Status code is 200\", function () {\r",
-											"    pm.response.to.have.status(200);\r",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "localhost:3000/library/student/1",
-									"host": [
-										"localhost"
-									],
-									"port": "3000",
-									"path": [
-										"library",
-										"student",
-										"1"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "OK 422 {non-numeric}",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Status code is 422\", function () {\r",
-											"    pm.response.to.have.status(422);\r",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "localhost:3000/library/student/abc",
-									"host": [
-										"localhost"
-									],
-									"port": "3000",
-									"path": [
-										"library",
-										"student",
-										"abc"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "OK 422 {not found}",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Status code is 404\", function () {\r",
-											"    pm.response.to.have.status(404);\r",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "localhost:3000/library/student/19",
-									"host": [
-										"localhost"
-									],
-									"port": "3000",
-									"path": [
-										"library",
-										"student",
-										"19"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
-					"name": "Search student by name",
-					"item": [
-						{
-							"name": "OK 200 {retrieved}",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Status code is 200\", function () {\r",
-											"    pm.response.to.have.status(200);\r",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "localhost:3000/library/student?name=andreas",
-									"host": [
-										"localhost"
-									],
-									"port": "3000",
-									"path": [
-										"library",
-										"student"
-									],
-									"query": [
-										{
-											"key": "name",
-											"value": "andreas"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "OK 422 {empty query}",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Status code is 422\", function () {\r",
-											"    pm.response.to.have.status(422);\r",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "localhost:3000/library/student?name=",
-									"host": [
-										"localhost"
-									],
-									"port": "3000",
-									"path": [
-										"library",
-										"student"
-									],
-									"query": [
-										{
-											"key": "name",
-											"value": ""
-										}
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
-					"name": "Edit an existing student for a given ID",
-					"item": [
-						{
-							"name": "OK 200 {updated}",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Status code is 200\", function () {\r",
-											"    pm.response.to.have.status(200);\r",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"George Poleos\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "localhost:3000/library/student/1",
-									"host": [
-										"localhost"
-									],
-									"port": "3000",
-									"path": [
-										"library",
-										"student",
-										"1"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "OK 404 {not found}",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Status code is 404\", function () {\r",
-											"    pm.response.to.have.status(404);\r",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "PUT",
-								"header": [],
-								"url": {
-									"raw": "localhost:3000/library/student/105",
-									"host": [
-										"localhost"
-									],
-									"port": "3000",
-									"path": [
-										"library",
-										"student",
-										"105"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "OK 422 {no fields exist}",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Status code is 422\", function () {\r",
-											"    pm.response.to.have.status(422);\r",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "localhost:3000/library/student/1",
-									"host": [
-										"localhost"
-									],
-									"port": "3000",
-									"path": [
-										"library",
-										"student",
-										"1"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
-					"name": "localhost:3000/library/students",
+					"name": "GET BIBLIOGRAPHIES",
 					"event": [
 						{
 							"listen": "test",
@@ -2689,25 +2688,18 @@
 							}
 						}
 					],
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
-							"raw": "localhost:3000/library/students",
+							"raw": "localhost:3000/library/bibliographies",
 							"host": [
 								"localhost"
 							],
 							"port": "3000",
 							"path": [
 								"library",
-								"students"
+								"bibliographies"
 							]
 						}
 					},
