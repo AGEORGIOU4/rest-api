@@ -2,11 +2,11 @@
 
 # To execute run the following commands
 
-npm init
-npm install express --save
-npm install sqlite3
-npm install sequelize --save
-npm install sqlite3-transactions
+1. npm init
+2. npm install express --save
+3. npm install sqlite3
+4. npm install sequelize --save
+5. npm install sqlite3-transactions
 
 node .
 
