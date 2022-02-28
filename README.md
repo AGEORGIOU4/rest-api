@@ -2,7 +2,7 @@
 
 # To execute run the following commands
 
-1. npm install express --save
+1. npm install
 2. node .
 
 # The file does not contain a populated db. The db with the tables are created when the program runs for the first time and populated when the API Calls are realized. Follow the instructions below
