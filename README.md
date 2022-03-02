@@ -19,9 +19,9 @@
 - CRUD Operations: To test all the functionalities and constraints, every endpoint's operation (Get, Post, Put, Delete) was tested using different parameters.
 - Error Handling: Some tests give wrong or faulty data to check if the server or the program crashes. Every operation handles errors and provides meaningful messages.
 - Persistence: The program uses sequelize library to create the database and the tables. Every concept has its own dedicated js file to declare the entity along with its attributes and relationships.
-- Concurrency: Elimination of concurrent transactions when updating a LOAN is achieved using sequelize managed transactions. 
+- Concurrency: Elimination of concurrent transactions when posting, updating or deleting from an endpoint is achieved using sequelize managed transactions. 
 
-To check concurrent transactions for:
+To check concurrent transactions use the following command on terminal:
 
 Books
 -----
