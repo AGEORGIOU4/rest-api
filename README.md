@@ -21,5 +21,48 @@
 - Persistence: The program uses sequelize library to create the database and the tables. Every concept has its own dedicated js file to declare the entity along with its attributes and relationships.
 - Concurrency: Elimination of concurrent transactions when updating a LOAN is achieved using sequelize managed transactions. 
 
+To check concurrent transactions for:
+
+Books
+-----
+POST: 
+xargs -I % -P 5 curl -X POST -H "Content-Type: application/json" -d '{"authors": "Stephen King","title": "Knightriders","isbn": "921728-34-63-243-0","year": "1981","loanable": "true","quantity": 1 }' "localhost:3000/library/book" \ < <(printf '%s\n' {1..10})
+
+PUT:
+xargs -I % -P 5 curl -X PUT -H "Content-Type: application/json" -d '{"title": "Pinoccio"}' "localhost:3000/library/book/1" \ < <(printf '%s\n' {1..10})
+
+Students
+--------
+POST:
+xargs -I % -P 5 curl -X POST -H "Content-Type: application/json" -d '{"name": "Nearchos Paspallis","yob": "30/01/1975"}' "localhost:3000/library/student" \ < <(printf '%s\n' {1..10})
+
+PUT:
+xargs -I % -P 5 curl -X PUT -H "Content-Type: application/json" -d '{    "name": "Nearchos Paspallis","yob": 1975}' "localhost:3000/library/student/1" \ < <(printf '%s\n' {1..10})
+
+
+Loans
+-----
+POST:
+xargs -I % -P 5 curl -X POST -H "Content-Type: application/json" -d '{"bookID": 3,"studentID": 2,"checkout": "04/25/2022","due": "05/25/2022","returned": "false"}' "localhost:3000/library/loan" \ < <(printf '%s\n' {1..10})
+
+PUT: 
+xargs -I % -P 5 curl -X PUT -H "Content-Type: application/json" -d '{"returned":"false"}' "localhost:3000/library/loan/1" \ < <(printf '%s\n' {1..10})
+
+Modules
+-------
+POST:
+xargs -I % -P 5 curl -X POST -H "Content-Type: application/json" -d '{"code": "CO1111", "name": "Computing Skills"}' "localhost:3000/library/module" \ < <(printf '%s\n' {1..10})
+
+PUT:
+xargs -I % -P 5 curl -X PUT -H "Content-Type: application/json" -d '{"name": "Distributed Enterprise Applications"}' "localhost:3000/library/module/CO2509&Enterprise Applications" \ < <(printf '%s\n' {1..10})
+
+Bibliographies 
+--------------
+PUT: 
+xargs -I % -P 5 curl -X PUT -H "Content-Type: application/json" -d '{}' "localhost:3000/library/bibliography/CO2509/1" \ < <(printf '%s\n' {1..10})
+
+DELETE:
+xargs -I % -P 5 curl -X DELETE -H "Content-Type: application/json" -d '{}' "localhost:3000/library/bibliography/CO2509/1" \ < <(printf '%s\n' {1..10})  
+
 
 
