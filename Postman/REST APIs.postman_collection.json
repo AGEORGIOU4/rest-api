@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "c9cccc88-84c1-4471-9402-8e5ee8dce884",
+		"_postman_id": "a9d2f11b-3f39-4465-851e-4ff52e88632d",
 		"name": "REST APIs",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -1569,7 +1569,7 @@
 									}
 								},
 								"url": {
-									"raw": "localhost:3000/library/module/co2509&Enterprise Applications",
+									"raw": "localhost:3000/library/module/co2508&Enterprise Applications",
 									"host": [
 										"localhost"
 									],
@@ -1577,7 +1577,7 @@
 									"path": [
 										"library",
 										"module",
-										"co2509&Enterprise Applications"
+										"co2508&Enterprise Applications"
 									]
 								}
 							},
@@ -1655,7 +1655,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"bookID\": 1,\r\n    \"studentID\": 1,\r\n    \"checkout\": \"04/25/2022\",\r\n    \"due\": \"05/25/2022\",\r\n    \"returned\": \"false\"\r\n}",
+									"raw": "{\r\n    \"bookID\": 2,\r\n    \"studentID\": 4,\r\n    \"checkout\": \"04/25/2022\",\r\n    \"due\": \"05/25/2022\",\r\n    \"returned\": \"false\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1697,47 +1697,6 @@
 								"body": {
 									"mode": "raw",
 									"raw": "{\r\n    \"bookID\": 1,\r\n    \"studentID\": 2,\r\n    \"checkout\": \"04/25/2022\",\r\n    \"due\": \"05/25/2022\",\r\n    \"returned\": \"false\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "localhost:3000/library/loan",
-									"host": [
-										"localhost"
-									],
-									"port": "3000",
-									"path": [
-										"library",
-										"loan"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "OK 500 {book ID does not exist}",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Status code is 500\", function () {\r",
-											"    pm.response.to.have.status(500);\r",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"bookID\": 11111,\r\n    \"studentID\": 1,\r\n    \"checkout\": \"04/25/2022\",\r\n    \"due\": \"05/25/2022\",\r\n    \"returned\": \"false\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1861,6 +1820,47 @@
 								"body": {
 									"mode": "raw",
 									"raw": "{\r\n    \"bookID\": 3,\r\n    \"studentID\": 1,\r\n    \"checkout\": \"04/25/2022\",\r\n    \"due\": \"05/25/2022\",\r\n    \"returned\": \"false\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:3000/library/loan",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"library",
+										"loan"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "OK 500 {book ID does not exist}",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 422\", function () {\r",
+											"    pm.response.to.have.status(422);\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"bookID\": 11111,\r\n    \"studentID\": 1,\r\n    \"checkout\": \"04/25/2022\",\r\n    \"due\": \"05/25/2022\",\r\n    \"returned\": \"false\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2311,7 +2311,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"moduleCode\" : \"CO2509\",\r\n    \"bookID\" : \"1\"\r\n}",
+									"raw": "{\r\n    \"moduleCode\" : \"CO3721\",\r\n    \"bookID\" : \"2\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2334,7 +2334,7 @@
 							"response": []
 						},
 						{
-							"name": "OK 200 {do nothing}",
+							"name": "OK 200 {already exists}",
 							"event": [
 								{
 									"listen": "test",
@@ -2354,7 +2354,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"moduleCode\" : \"CO2509\",\r\n    \"bookID\" : \"1\"\r\n}",
+									"raw": "{\r\n    \"moduleCode\" : \"CO3721\",\r\n    \"bookID\" : \"2\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"

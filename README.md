@@ -5,7 +5,7 @@
 1. npm install
 2. node .
 
-# The file does not contain a populated db. The db with the tables are created when the program runs for the first time and populated when the API Calls are realized. Follow the instructions below
+# The file does contain a populated db. The db with the tables are created when the program runs for the first time and populated when the API Calls are realized. Follow the instructions below
 
 1. Open Postman
 2. Import Collection from Postman folder
@@ -34,7 +34,7 @@ xargs -I % -P 5 curl -X PUT -H "Content-Type: application/json" -d '{"title": "P
 Students
 --------
 POST:
-xargs -I % -P 5 curl -X POST -H "Content-Type: application/json" -d '{"name": "Nearchos Paspallis","yob": "30/01/1975"}' "localhost:3000/library/student" \ < <(printf '%s\n' {1..10})
+xargs -I % -P 5 curl -X POST -H "Content-Type: application/json" -d '{"name": "Nearchos Paspallis","yob": "1975"}' "localhost:3000/library/student" \ < <(printf '%s\n' {1..10})
 
 PUT:
 xargs -I % -P 5 curl -X PUT -H "Content-Type: application/json" -d '{    "name": "Nearchos Paspallis","yob": 1975}' "localhost:3000/library/student/1" \ < <(printf '%s\n' {1..10})
@@ -43,7 +43,7 @@ xargs -I % -P 5 curl -X PUT -H "Content-Type: application/json" -d '{    "name":
 Loans
 -----
 POST:
-xargs -I % -P 5 curl -X POST -H "Content-Type: application/json" -d '{"bookID": 3,"studentID": 2,"checkout": "04/25/2022","due": "05/25/2022","returned": "false"}' "localhost:3000/library/loan" \ < <(printf '%s\n' {1..10})
+xargs -I % -P 5 curl -X POST -H "Content-Type: application/json" -d '{"bookID": 2,"studentID": 7,"checkout": "04/25/2022","due": "05/25/2022","returned": "false"}' "localhost:3000/library/loan" \ < <(printf '%s\n' {1..10})
 
 PUT: 
 xargs -I % -P 5 curl -X PUT -H "Content-Type: application/json" -d '{"returned":"false"}' "localhost:3000/library/loan/1" \ < <(printf '%s\n' {1..10})
@@ -51,10 +51,10 @@ xargs -I % -P 5 curl -X PUT -H "Content-Type: application/json" -d '{"returned":
 Modules
 -------
 POST:
-xargs -I % -P 5 curl -X POST -H "Content-Type: application/json" -d '{"code": "CO1111", "name": "Computings Skills"}' "localhost:3000/library/module" \ < <(printf '%s\n' {1..10})
+xargs -I % -P 5 curl -X POST -H "Content-Type: application/json" -d '{"code": "CO2401", "name": "Networking"}' "localhost:3000/library/module" \ < <(printf '%s\n' {1..10})
 
 PUT:
-xargs -I % -P 5 curl -X PUT -H "Content-Type: application/json" -d '{"name": "Computing Skills"}' "localhost:3000/library/module/CO1111&Computings Skills" \ < <(printf '%s\n' {1..10})
+xargs -I % -P 5 curl -X PUT -H "Content-Type: application/json" -d '{"name": "Computing Skills"}' "localhost:3000/library/module/CO2401&Networking" \ < <(printf '%s\n' {1..10})
 
 Bibliographies 
 --------------

@@ -33,7 +33,7 @@ router.put('/library/bibliography/:id', (req, res) => {
                 })
                 .catch(error => {
                     if (error.name === 'SequelizeUniqueConstraintError') {
-                        res.status(409)
+                        res.status(200)
                             .setHeader('content-type', 'application/json')
                             .send({error: `Bibliography already exists for module code: ${posted_bibliography.moduleCode}`}); // resource already exists
                     }
