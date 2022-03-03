@@ -7,10 +7,16 @@ const {Module} = require("../concepts/module.js")
 const {Book} = require("../concepts/book.js")
 
 const Bibliography = sequelize.define('Bibliography', {
+    id: {
+        type: DataTypes.INTEGER,
+        require: true,
+        primaryKey: true,
+        autoIncrement: true
+    },
     moduleCode: {
         type: DataTypes.STRING,
-        primaryKey: true,
         require: true,
+        unique: true,
         allowNull: false,
         references: {
             model: Module,
@@ -19,7 +25,6 @@ const Bibliography = sequelize.define('Bibliography', {
     },
     bookID: {
         type: DataTypes.INTEGER,
-        primaryKey: true,
         require: true,
         allowNull: false,
         references: {

@@ -5,14 +5,21 @@ const {sequelizeFn} = require("../db/createDB");
 const sequelize = sequelizeFn();
 
 const Module = sequelize.define('Module', {
+    id: {
+        type: DataTypes.INTEGER,
+        require: true,
+        primaryKey: true,
+        autoIncrement: true
+    },
     code: {
         type: DataTypes.STRING,
         require: true,
-        primaryKey: true,
-        unique: true
+        unique: true,
+        allowNull: false
     },
     name: {
         type: DataTypes.STRING,
+        require: true,
         allowNull: false
     },
 }, {

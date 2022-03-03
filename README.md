@@ -51,18 +51,18 @@ xargs -I % -P 5 curl -X PUT -H "Content-Type: application/json" -d '{"returned":
 Modules
 -------
 POST:
-xargs -I % -P 5 curl -X POST -H "Content-Type: application/json" -d '{"code": "CO1111", "name": "Computing Skills"}' "localhost:3000/library/module" \ < <(printf '%s\n' {1..10})
+xargs -I % -P 5 curl -X POST -H "Content-Type: application/json" -d '{"code": "CO1111", "name": "Computings Skills"}' "localhost:3000/library/module" \ < <(printf '%s\n' {1..10})
 
 PUT:
-xargs -I % -P 5 curl -X PUT -H "Content-Type: application/json" -d '{"name": "Distributed Enterprise Applications"}' "localhost:3000/library/module/CO2509&Enterprise Applications" \ < <(printf '%s\n' {1..10})
+xargs -I % -P 5 curl -X PUT -H "Content-Type: application/json" -d '{"name": "Computing Skills"}' "localhost:3000/library/module/CO1111&Computings Skills" \ < <(printf '%s\n' {1..10})
 
 Bibliographies 
 --------------
 PUT: 
-xargs -I % -P 5 curl -X PUT -H "Content-Type: application/json" -d '{}' "localhost:3000/library/bibliography/CO2509/1" \ < <(printf '%s\n' {1..10})
+xargs -I % -P 5 curl -X PUT -H "Content-Type: application/json" -d '{"moduleCode" : "CO2509", "bookID" : "1"}' "localhost:3000/library/bibliography/1" \ < <(printf '%s\n' {1..10})
 
 DELETE:
-xargs -I % -P 5 curl -X DELETE -H "Content-Type: application/json" -d '{}' "localhost:3000/library/bibliography/CO2509/1" \ < <(printf '%s\n' {1..10})  
+xargs -I % -P 5 curl -X DELETE -H "Content-Type: application/json" -d '{"moduleCode" : "CO2509", "bookID" : "1"}' "localhost:3000/library/bibliography" \ < <(printf '%s\n' {1..10})  
 
 
 
