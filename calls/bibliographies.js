@@ -8,31 +8,44 @@ const {Bibliography} = require("../concepts/bibliography");
 
 // ======== Bibliographies API Calls ======== //
 
-router.put('/library/bibliography/:moduleCode/:bookID', (req, res) => {
-    const {moduleCode} = req.params; // get moduleCode from URI
-    const {bookID} = req.params; // get bookID from URI
+router.put('/library/bibliography/:id', (req, res) => {
+    const {id} = req.params; // get id from URI
+    const posted_bibliography = req.body; // submitted bibliography
 
     return sequelize.transaction(async (t) => {
-        const bibliography = await Bibliography.findOne({where: {moduleCode: moduleCode, bookID: bookID}})
+        if (isNaN(id)) {
+            return res.status(422)
+                .setHeader('content-type', 'application/json')
+                .send({message: `ID is non-numeric`});
+        }
+
+        const bibliography = await Bibliography.findOne({where: {id: id}})
 
         if (!bibliography) { // bibliography not found (create new)
             return Bibliography.create({
-                moduleCode: moduleCode,
-                bookID: bookID,
+                moduleCode: posted_bibliography.moduleCode,
+                bookID: posted_bibliography.bookID,
             }, {transaction: t})
                 .then(bibliography => {
                     res.status(200)
                         .setHeader('content-type', 'application/json')
                         .send({message: `Bibliography added`, bibliography: bibliography}); // body is JSON
                 })
+                .catch(error => {
+                    if (error.name === 'SequelizeUniqueConstraintError') {
+                        res.status(409)
+                            .setHeader('content-type', 'application/json')
+                            .send({error: `Bibliography already exists for module code: ${posted_bibliography.moduleCode}`}); // resource already exists
+                    }
+                });
         }
 
         // bibliography found
-        if (moduleCode)
-            bibliography.moduleCode = moduleCode;
+        if (posted_bibliography.moduleCode)
+            bibliography.moduleCode = posted_bibliography.moduleCode;
 
-        if (bookID)
-            bibliography.bookID = bookID;
+        if (posted_bibliography.bookID)
+            bibliography.bookID = posted_bibliography.bookID;
 
         return bibliography.save({transaction: t})
             .then(bibliography => {
@@ -76,17 +89,18 @@ router.get('/library/bibliography/:moduleCode', (req, res) => {
         });
 });
 
-router.delete('/library/bibliography/:moduleCode/:bookID', (req, res) => {
-    const {moduleCode} = req.params; // get moduleCode from URI
-    const {bookID} = req.params; // get bookID from URI
+router.delete('/library/bibliography/', (req, res) => {
+    const {moduleCode} = req.body; // get module code from body
+    const {bookID} = req.body; // get book id from URI
 
     return sequelize.transaction(async (t) => {
+
         const bibliography = await Bibliography.findOne({where: {moduleCode: moduleCode, bookID: bookID}})
 
         if (!bibliography) {
             return res.status(404)
                 .setHeader('content-type', 'application/json')
-                .send({message: `bibliography not found for moduleCode ${moduleCode} and bookID ${bookID}`});
+                .send({message: `Bibliography not found for module code ${moduleCode} and book id ${bookID}`});
         }
 
         // bibliography found

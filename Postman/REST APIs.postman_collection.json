@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "a19e7d1d-9821-4e15-80b5-a828c48f2d56",
+		"_postman_id": "c9cccc88-84c1-4471-9402-8e5ee8dce884",
 		"name": "REST APIs",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -31,7 +31,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"authors\": \"Leonardo\",\r\n    \"title\": \"Harry Potter\",\r\n    \"isbn\": \"91728-34-63-243-0\",\r\n    \"year\": \"1994\",\r\n    \"loanable\": \"true\",\r\n    \"quantity\": 1\r\n}",
+									"raw": "{\r\n    \"authors\": \"J.K. Rowling\",\r\n    \"title\": \"Harry Potter: The Complete Collection\",\r\n    \"isbn\": \"9781781106471\",\r\n    \"year\": \"2015\",\r\n    \"loanable\": \"true\",\r\n    \"quantity\": 1\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -72,7 +72,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"authors\": \"Peter\",\r\n    \"title\": \"Titanic\",\r\n    \"isbn\": \"91728-31-63-243-0\",\r\n    \"year\": \"1994\",\r\n    \"loanable\": \"false\",\r\n    \"quantity\": 30\r\n}",
+									"raw": "{\r\n    \"authors\": \"Kurt Vonnegut\",\r\n    \"title\": \"The Sirens of Titan\",\r\n    \"isbn\": \"9780385333498\",\r\n    \"year\": \"1998\",\r\n    \"loanable\": \"false\",\r\n    \"quantity\": 30\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -113,7 +113,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"authors\": \"\",\r\n    \"title\": \"Harry Potter\",\r\n    \"isbn\": \"91728-34-63-243-0\",\r\n    \"year\": \"1994\",\r\n    \"loanable\": \"true\",\r\n    \"quantity\": 30\r\n}",
+									"raw": "{\r\n    \"authors\": \"\",\r\n    \"title\": \"The Book Thief\",\r\n    \"isbn\": \"9780375842207\",\r\n    \"year\": \"1998\",\r\n    \"loanable\": \"true\",\r\n    \"quantity\": 30\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -154,7 +154,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"authors\": \"Leonardo\",\r\n    \"title\": \"Harry Potter\",\r\n    \"isbn\": \"11728-34-63-243-0\",\r\n    \"year\": \"2025\",\r\n    \"loanable\": \"true\",\r\n    \"quantity\": 30\r\n}",
+									"raw": "{\r\n    \"authors\": \"Markus Zusak\",\r\n    \"title\": \"The Book Thief\",\r\n    \"isbn\": \"9780375842207\",\r\n    \"year\": \"1850\",\r\n    \"loanable\": \"true\",\r\n    \"quantity\": 30\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -195,7 +195,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"authors\": \"Leonardo\",\r\n    \"title\": \"Harry Potter\",\r\n    \"isbn\": \"11728-34-63-243-0\",\r\n    \"year\": \"2025\",\r\n    \"loanable\": \"true\",\r\n    \"quantity\": -1\r\n}",
+									"raw": "{\r\n    \"authors\": \"Markus Zusak\",\r\n    \"title\": \"The Book Thief\",\r\n    \"isbn\": \"9780375842207\",\r\n    \"year\": \"1850\",\r\n    \"loanable\": \"true\",\r\n    \"quantity\": -5\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -236,7 +236,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"authors\": \"Leonardo\",\r\n    \"title\": \"Harry Potter\",\r\n    \"isbn\": \"91728-34-63-243-0\",\r\n    \"year\": \"1994\",\r\n    \"loanable\": \"true\",\r\n    \"quantity\": 30\r\n}",
+									"raw": "    {\r\n        \"id\": 1,\r\n        \"authors\": \"Penelope Douglas\",\r\n        \"title\": \"Birthday Girl\",\r\n        \"isbn\": \"1976333083\",\r\n        \"year\": 2018,\r\n        \"loanable\": true,\r\n        \"quantity\": 1\r\n    }",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -385,7 +385,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:3000/library/book?title=harry potter",
+									"raw": "localhost:3000/library/book?title=birthday girl",
 									"host": [
 										"localhost"
 									],
@@ -397,7 +397,7 @@
 									"query": [
 										{
 											"key": "title",
-											"value": "harry potter"
+											"value": "birthday girl"
 										}
 									]
 								}
@@ -505,7 +505,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"loanable\": \"true\"\r\n}",
+									"raw": "{\r\n    \"loanable\": \"false\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -513,7 +513,7 @@
 									}
 								},
 								"url": {
-									"raw": "localhost:3000/library/book/1",
+									"raw": "localhost:3000/library/book/3",
 									"host": [
 										"localhost"
 									],
@@ -521,7 +521,7 @@
 									"path": [
 										"library",
 										"book",
-										"1"
+										"3"
 									]
 								}
 							},
@@ -645,38 +645,6 @@
 							"response": []
 						}
 					]
-				},
-				{
-					"name": "GET BOOKS",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:3000/library/books",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"library",
-								"books"
-							]
-						}
-					},
-					"response": []
 				}
 			]
 		},
@@ -747,7 +715,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"Panayiotis Fani\",\r\n    \"yob\": 1991\r\n}",
+									"raw": "{\r\n    \"name\": \"Alexandros Christou\",\r\n    \"yob\": 1999\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -940,7 +908,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:3000/library/student/19",
+									"raw": "localhost:3000/library/student/1234",
 									"host": [
 										"localhost"
 									],
@@ -948,7 +916,7 @@
 									"path": [
 										"library",
 										"student",
-										"19"
+										"1234"
 									]
 								}
 							},
@@ -978,7 +946,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:3000/library/student?name=andreas",
+									"raw": "localhost:3000/library/student?name=charalambos",
 									"host": [
 										"localhost"
 									],
@@ -990,7 +958,7 @@
 									"query": [
 										{
 											"key": "name",
-											"value": "andreas"
+											"value": "charalambos"
 										}
 									]
 								}
@@ -1060,7 +1028,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"George Poleos\"\r\n}",
+									"raw": "{\r\n    \"name\": \"Jack Kyriakou\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1068,7 +1036,7 @@
 									}
 								},
 								"url": {
-									"raw": "localhost:3000/library/student/1",
+									"raw": "localhost:3000/library/student/2",
 									"host": [
 										"localhost"
 									],
@@ -1076,7 +1044,7 @@
 									"path": [
 										"library",
 										"student",
-										"1"
+										"2"
 									]
 								}
 							},
@@ -1158,45 +1126,6 @@
 							"response": []
 						}
 					]
-				},
-				{
-					"name": "GET STUDENTS",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "localhost:3000/library/students",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"library",
-								"students"
-							]
-						}
-					},
-					"response": []
 				}
 			]
 		},
@@ -1226,7 +1155,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"code\": \"CO2509\",\r\n    \"name\": \"Enterprise Applications\"\r\n}",
+									"raw": "{\r\n    \"code\": \"CO2508\",\r\n    \"name\": \"Enterprise Applications\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1512,7 +1441,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:3000/library/module?name=Enterprise",
+									"raw": "localhost:3000/library/module?name=Compu",
 									"host": [
 										"localhost"
 									],
@@ -1524,7 +1453,7 @@
 									"query": [
 										{
 											"key": "name",
-											"value": "Enterprise"
+											"value": "Compu"
 										}
 									]
 								}
@@ -1697,45 +1626,6 @@
 							"response": []
 						}
 					]
-				},
-				{
-					"name": "GET MODULES",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "localhost:3000/library/modules",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"library",
-								"modules"
-							]
-						}
-					},
-					"response": []
 				}
 			]
 		},
@@ -1970,7 +1860,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"bookID\": 2,\r\n    \"studentID\": 1,\r\n    \"checkout\": \"04/25/2022\",\r\n    \"due\": \"05/25/2022\",\r\n    \"returned\": \"false\"\r\n}",
+									"raw": "{\r\n    \"bookID\": 3,\r\n    \"studentID\": 1,\r\n    \"checkout\": \"04/25/2022\",\r\n    \"due\": \"05/25/2022\",\r\n    \"returned\": \"false\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2022,7 +1912,7 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "localhost:3000/library/loans/bookID1",
+									"raw": "localhost:3000/library/loans/bookID2",
 									"host": [
 										"localhost"
 									],
@@ -2030,7 +1920,7 @@
 									"path": [
 										"library",
 										"loans",
-										"bookID1"
+										"bookID2"
 									]
 								}
 							},
@@ -2055,7 +1945,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "localhost:3000/library/loans/bookID1/true",
+									"raw": "localhost:3000/library/loans/bookID2/true",
 									"host": [
 										"localhost"
 									],
@@ -2063,7 +1953,7 @@
 									"path": [
 										"library",
 										"loans",
-										"bookID1",
+										"bookID2",
 										"true"
 									]
 								}
@@ -2391,45 +2281,6 @@
 							"response": []
 						}
 					]
-				},
-				{
-					"name": "GET LOANS",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "localhost:3000/library/loans",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"library",
-								"loans"
-							]
-						}
-					},
-					"response": []
 				}
 			]
 		},
@@ -2460,7 +2311,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n}",
+									"raw": "{\r\n    \"moduleCode\" : \"CO2509\",\r\n    \"bookID\" : \"1\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2468,7 +2319,7 @@
 									}
 								},
 								"url": {
-									"raw": "localhost:3000/library/bibliography/CO2509/1",
+									"raw": "localhost:3000/library/bibliography/1",
 									"host": [
 										"localhost"
 									],
@@ -2476,7 +2327,6 @@
 									"path": [
 										"library",
 										"bibliography",
-										"CO2509",
 										"1"
 									]
 								}
@@ -2504,7 +2354,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n}",
+									"raw": "{\r\n    \"moduleCode\" : \"CO2509\",\r\n    \"bookID\" : \"1\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2512,7 +2362,7 @@
 									}
 								},
 								"url": {
-									"raw": "localhost:3000/library/bibliography/CO2509/1",
+									"raw": "localhost:3000/library/bibliography/1",
 									"host": [
 										"localhost"
 									],
@@ -2520,7 +2370,6 @@
 									"path": [
 										"library",
 										"bibliography",
-										"CO2509",
 										"1"
 									]
 								}
@@ -2621,17 +2470,24 @@
 							"request": {
 								"method": "DELETE",
 								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"moduleCode\" : \"CO2509\",\r\n    \"bookID\" : \"1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
 								"url": {
-									"raw": "localhost:3000/library/bibliography/CO2509/1",
+									"raw": "localhost:3000/library/bibliography",
 									"host": [
 										"localhost"
 									],
 									"port": "3000",
 									"path": [
 										"library",
-										"bibliography",
-										"CO2509",
-										"1"
+										"bibliography"
 									]
 								}
 							},
@@ -2656,7 +2512,7 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "localhost:3000/library/bibliography/CO2509/12345",
+									"raw": "localhost:3000/library/bibliography/12345",
 									"host": [
 										"localhost"
 									],
@@ -2664,7 +2520,6 @@
 									"path": [
 										"library",
 										"bibliography",
-										"CO2509",
 										"12345"
 									]
 								}
@@ -2672,40 +2527,189 @@
 							"response": []
 						}
 					]
-				},
-				{
-					"name": "GET BIBLIOGRAPHIES",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "localhost:3000/library/bibliographies",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"library",
-								"bibliographies"
-							]
-						}
-					},
-					"response": []
 				}
 			]
+		},
+		{
+			"name": "GET BOOKS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/library/books",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"library",
+						"books"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET STUDENTS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:3000/library/students",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"library",
+						"students"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET MODULES",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:3000/library/modules",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"library",
+						"modules"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET LOANS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:3000/library/loans",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"library",
+						"loans"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET BIBLIOGRAPHIES",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/library/bibliographies",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"library",
+						"bibliographies"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
