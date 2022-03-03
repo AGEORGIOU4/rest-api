@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "c5cd8a69-834a-47db-97fa-f27cffcfe015",
+		"_postman_id": "c9cccc88-84c1-4471-9402-8e5ee8dce884",
 		"name": "REST APIs",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -236,7 +236,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "    {\r\n        \"id\": 1,\r\n        \"authors\": \"Penelope Douglas\",\r\n        \"title\": \"Birthday Girl\",\r\n        \"isbn\": \"1976333083\",\r\n        \"year\": 2018,\r\n        \"loanable\": true,\r\n        \"quantity\": 1\r\n    },",
+									"raw": "    {\r\n        \"id\": 1,\r\n        \"authors\": \"Penelope Douglas\",\r\n        \"title\": \"Birthday Girl\",\r\n        \"isbn\": \"1976333083\",\r\n        \"year\": 2018,\r\n        \"loanable\": true,\r\n        \"quantity\": 1\r\n    }",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1155,7 +1155,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"code\": \"CO2509\",\r\n    \"name\": \"Enterprise Applications\"\r\n}",
+									"raw": "{\r\n    \"code\": \"CO2508\",\r\n    \"name\": \"Enterprise Applications\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -2311,7 +2311,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"moduleCode\" : \"CO2508\",\r\n    \"bookID\" : \"1\"\r\n}",
+									"raw": "{\r\n    \"moduleCode\" : \"CO2509\",\r\n    \"bookID\" : \"1\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
