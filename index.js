@@ -7,7 +7,7 @@ const loans = require('./calls/loans.js');
 const bibliographies = require('./calls/bibliographies.js');
 
 const app = express();
-const port = process.env.PORT || 3000;
+let port = process.env.PORT || 3000;
 
 app.get("/", (req, res) => {
     res.send("Hello REST API!")
