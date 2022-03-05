@@ -7,7 +7,7 @@ const loans = require('./calls/loans.js');
 const bibliographies = require('./calls/bibliographies.js');
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.use(express.json());
 
@@ -21,5 +21,3 @@ app.use('/', bibliographies);
 app.listen(port, () => {
     console.log(`REST API app listening at http://localhost:${port}`)
 });
-
-//test
