@@ -16,5 +16,8 @@
   },
   "devDependencies": {
     "sequelize": "^6.16.2"
+  },
+  "engines": {
+    "node": "10.16.2"
   }
 }
