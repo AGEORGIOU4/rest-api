@@ -11,11 +11,12 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.3",
+    "sequelize-cli": "^6.4.1",
     "sqlite3": "^5.0.2",
     "sqlite3-transactions": "^0.0.5"
   },
   "devDependencies": {
-    "sequelize": "^6.16.2"
+    "sequelize": "^6.17.0"
   },
   "engines": {
     "node": "16.13.2"
